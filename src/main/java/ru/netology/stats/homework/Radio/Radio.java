@@ -5,15 +5,6 @@ public class Radio {
     private int currentRadioStation;
     private int currentVolume;
 
-
-    public void toMinLimitRadioStation() {
-        currentRadioStation = 0;
-    }
-
-    public void toMaxLimitRadioStation() {
-        currentRadioStation = 9;
-    }
-
     public int getCurrentRadioStation() {
         return currentRadioStation;
     }
@@ -29,12 +20,22 @@ public class Radio {
 
     }
 
+
+    public void toMinLimitRadioStation() {
+        currentRadioStation = 0;
+    }
+
+    public void toMaxLimitRadioStation() {
+        currentRadioStation = 9;
+    }
+
+
     public void next() {
         if (currentRadioStation < 9) {
             currentRadioStation++;
-        } else {
-            currentRadioStation = 0;
+            return;
         }
+        currentRadioStation = 0;
     }
 
     public void prev() {
@@ -83,7 +84,7 @@ public class Radio {
     }
 
     public void reduceVolume() {
-        if (currentVolume < 0) {
+        if (currentVolume > 0) {
             currentVolume = currentVolume - 1;
         }
     }

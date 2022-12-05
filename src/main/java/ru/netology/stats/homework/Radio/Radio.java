@@ -2,18 +2,36 @@ package ru.netology.stats.homework.Radio;
 
 public class Radio {
 
+    private int maxRadioStation;
+    private int minRadioStation;
     private int currentRadioStation;
+    private int minVolume;
+    private int maxVolume;
     private int currentVolume;
+
+
+    public Radio() {
+        maxRadioStation = 9;
+        minRadioStation = 0;
+        minVolume = 0;
+        maxVolume = 100;
+    }
+
+    public Radio(int stationsCount){
+        maxRadioStation = stationsCount - 1;
+
+    }
+
 
     public int getCurrentRadioStation() {
         return currentRadioStation;
     }
 
     public void setCurrentRadioStation(int currentRadioStation) {
-        if (currentRadioStation < 0) {
+        if (currentRadioStation < minRadioStation) {
             return;
         }
-        if (currentRadioStation > 9) {
+        if (currentRadioStation > maxRadioStation) {
             return;
         }
         this.currentRadioStation = currentRadioStation;
@@ -22,27 +40,27 @@ public class Radio {
 
 
     public void toMinLimitRadioStation() {
-        currentRadioStation = 0;
+        currentRadioStation = minRadioStation;
     }
 
     public void toMaxLimitRadioStation() {
-        currentRadioStation = 9;
+        currentRadioStation = maxRadioStation;
     }
 
 
     public void next() {
-        if (currentRadioStation < 9) {
+        if (currentRadioStation < maxRadioStation) {
             currentRadioStation++;
             return;
         }
-        currentRadioStation = 0;
+        currentRadioStation = minRadioStation;
     }
 
     public void prev() {
-        if (currentRadioStation > 0) {
+        if (currentRadioStation > minRadioStation) {
             currentRadioStation--;
         } else {
-            currentRadioStation = 9;
+            currentRadioStation = maxRadioStation;
         }
     }
 
@@ -57,7 +75,7 @@ public class Radio {
     }
 
     public void toMaxVolume() {
-        currentVolume = 10;
+        currentVolume = maxVolume;
 
     }
 
@@ -67,10 +85,10 @@ public class Radio {
     }
 
     public void setIncreaseVolume(int сurrentVolume) {
-        if (сurrentVolume < 0) {
+        if (сurrentVolume < minVolume) {
             return;
         }
-        if (сurrentVolume > 10) {
+        if (сurrentVolume > maxVolume) {
             return;
         }
         this.currentVolume = сurrentVolume;
@@ -78,13 +96,13 @@ public class Radio {
     }
 
     public void increaseVolume() {
-        if (currentVolume < 10) {
+        if (currentVolume < maxVolume) {
             currentVolume = currentVolume + 1;
         }
     }
 
     public void reduceVolume() {
-        if (currentVolume > 0) {
+        if (currentVolume > minVolume) {
             currentVolume = currentVolume - 1;
         }
     }
